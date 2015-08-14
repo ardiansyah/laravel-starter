@@ -137,7 +137,7 @@ class AppServiceProvider extends ServiceProvider
             ],
             'Setting' => [
                 'manage.setting',
-                'setting.application',
+                // 'setting.application',
                 'setting.email',
             ],
         ]);

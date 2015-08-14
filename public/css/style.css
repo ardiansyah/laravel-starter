@@ -1,9 +1,36 @@
-.control-balloon-selector ul{padding:0;margin-top:-5px}
-.control-balloon-selector ul li{list-style:none;display:inline-block;padding:6px 7px 5px;margin-right:5px;margin-top:6px;text-transform:uppercase;background:#bcc3c7;color:#ffffff;font-size:10px;line-height:100%;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;-webkit-transition:all 0.1s ease;transition:all 0.1s ease}
-.control-balloon-selector ul li.active{background:#da5700 !important}
-.control-balloon-selector.control-disabled{opacity:0.5;filter:alpha(opacity=50)}
-.control-balloon-selector:not(.control-disabled) ul li:hover{background:#0181b9;cursor:pointer}
-.form-group .control-balloon-selector ul{margin-bottom:0}
+.control-balloon-selector ul {
+    padding:0;
+    margin-top:-5px
+}
+.control-balloon-selector ul li {
+    list-style:none;
+    display:inline-block;
+    padding:6px 7px 5px;
+    margin-right:5px;
+    margin-top:6px;
+    text-transform:uppercase;
+    background:#bcc3c7;
+    color:#ffffff;
+    font-size:10px;
+    line-height:100%;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:2px;
+    -webkit-transition:all 0.1s ease;
+    transition:all 0.1s ease
+}
+.control-balloon-selector ul li.active{
+    background: #30BD70 !important;
+}
+.control-balloon-selector.control-disabled{
+    opacity:0.5;filter:alpha(opacity=50)
+}
+.control-balloon-selector:not(.control-disabled) ul li:hover{
+    background:#0181b9;cursor:pointer
+}
+.form-group .control-balloon-selector ul{
+    margin-bottom:0
+}
 
 label.permissions-label {
     display: block;
@@ -39,7 +66,11 @@ label.permissions-label a {
     color: #fff;
 }
 .form-group.is-required > label:after {
-    color: #ff0000;      vertical-align: super;      font-size: 60%;      content: " *";      text-shadow: 0 0 2px #b30000;
+    color: #ff0000;
+    vertical-align: super;
+    font-size: 60%;
+    content: " *";
+    text-shadow: 0 0 2px #b30000;
 }
 .sidebar .nav-second-level li a.active {
     border-top: 1px solid #D8D0D0;

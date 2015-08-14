@@ -1,27 +1,49 @@
-## Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+# Laravel 5 Starter
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+> just another laravel app starter
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Fully inspired by [octobercms](http://octobercms.com)
 
-## Official Documentation
+#### Feature
+* User Authentication
+* User Management and Role Management
+* Dynamic User Permissions
+* Dynamic Role Permissions
+* Restricted access page
+* Dynamic Menu Builder
+* Dynamic Permission register
+* Email Setting
+    * Mandrill
+    * Mailgun
+    * PHP Mail
+    * Sendmail
+    * Log
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+#### Instalation
+Download the repository or clone https://github.com/ardiansyah/laravel-starter.git
 
-## Contributing
+then run
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+```
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+php artisan migrate
 
-### License
+php artisan db::seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+by default authentication will be:
+
+email: admin@admin.com
+
+password: admin
+
+#### Tools
+1. [Cartalys Sentinel](https://cartalyst.com/manual/sentinel/2.0)
+2. [Laracast Flash](https://github.com/laracasts/flash)
+3. [Setter](https://github.com/bradcornford/Setter)
+4. [Watson validation](https://github.com/dwightwatson/validating)
+5. [Dry UI](https://github.com/daftspunk/dry-ui/)
+6. [SB Admin Bootstrap](http://startbootstrap.com/template-overviews/sb-admin-2/)
