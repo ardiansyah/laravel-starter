@@ -23,8 +23,9 @@ Fully inspired by [octobercms](http://octobercms.com)
 #### Instalation
 Download the repository or clone https://github.com/ardiansyah/laravel-starter.git
 
-then run
+rename .env.example to .env and update username, and password for database
 
+then run
 
 ```
 composer install
