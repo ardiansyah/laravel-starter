@@ -201,7 +201,7 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-        'Setting'   => Cornford\Setter\Facades\Setting::class,
+        'Setting'   => Cornford\Setter\Facades\SettingFacade::class,
 
     ],
 
