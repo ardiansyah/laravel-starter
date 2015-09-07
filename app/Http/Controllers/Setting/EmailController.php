@@ -42,6 +42,7 @@ class EmailController extends Controller
 
     public function postCreate()
     {
+        // return $this->request->get('mail');
         $this->validate($this->request, [
             'mail.sender_name' => 'required',
             'mail.sender_email' => 'required',

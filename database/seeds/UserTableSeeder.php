@@ -25,6 +25,12 @@ class UserTableSeeder extends Seeder
             'password' => 'admin',
         ]);
 
+        $user->permissions = [
+            'superuser' => true
+        ];
+
+        $user->save();
+
         $roleAdmin->users()->attach($user);
     }
 }

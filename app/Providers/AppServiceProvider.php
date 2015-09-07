@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Navigation;
 use Permission;
 use Setting;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -97,13 +98,6 @@ class AppServiceProvider extends ServiceProvider
                     'manage.setting'
                 ],
                 'childMenu' => [
-                    // 'application' => [
-                    //     'label' => 'Application',
-                    //     'url' => '/settings/application',
-                    //     'permissions' => [
-                    //         'setting.application'
-                    //     ]
-                    // ],
                     'email' => [
                         'label' => 'Email',
                         'url' => '/settings/email',
@@ -111,7 +105,6 @@ class AppServiceProvider extends ServiceProvider
                             'setting.email'
                         ]
                     ]
-
                 ]
             ]
         ]);
@@ -137,7 +130,6 @@ class AppServiceProvider extends ServiceProvider
             ],
             'Setting' => [
                 'manage.setting',
-                // 'setting.application',
                 'setting.email',
             ],
         ]);
@@ -145,16 +137,55 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerMailer()
     {
-        if(Setting::has('system_mail')){
-            $config = $this->app->make('config');
-            $settings = Setting::get('system_mail');
-            $config->set('mail.driver', $settings->mail_method);
-            $config->set('mail.from.name', $settings->sender_name);
-            $config->set('mail.from.address', $settings->sender_email);
+        if (Schema::hasTable('settings'))
+        {
+            // if(Setting::has('system_mail')){
+            //     $config = $this->app->make('config');
+            //     $settings = Setting::get('system_mail');
+            //     // $config->set('mail.driver', $settings->mail_method);
+            //     $config->set('mail.driver', array_get($settings, 'mail_method'));
+            //     $config->set('mail.from.name', array_get($settings, 'sender_name'));
+            //     $config->set('mail.from.address', array_get($settings, 'sender_email'));
+            //
+            //     switch ($settings->mail_method) {
+            //
+            //         case 'smtp':
+            //             $config->set('mail.host', array_get($settings, 'smtp_address'));
+            //             $config->set('mail.port', array_get($settings, 'smtp_port'));
+            //             if (isset(array_get($settings, 'smtp_authorization'))) {
+            //                 $config->set('mail.username', array_get($settings, 'smtp_username'));
+            //                 $config->set('mail.password', array_get($settings, 'smtp_password'));
+            //             }
+            //             else {
+            //                 $config->set('mail.username', null);
+            //                 $config->set('mail.password', null);
+            //             }
+            //             break;
+            //
+            //         case 'sendmail':
+            //             $config->set('mail.sendmail', array_get($settings, 'sendmail_path'));
+            //             break;
+            //
+            //         case 'mailgun':
+            //             $config->set('services.mailgun.domain', array_get($settings, 'mailgun_domain'));
+            //             $config->set('services.mailgun.secret', array_get($settings, 'mailgun_secret'));
+            //             break;
+            //
+            //         case 'mandrill':
+            //             $config->set('services.mandrill.secret', array_get($settings, 'mandrill_secret'));
+            //             break;
+            //     }
+            // }
+            if(Setting::has('system_mail')){
+                $config = $this->app->make('config');
+                $settings = Setting::get('system_mail');
+                $config->set('mail.driver', $settings->mail_method);
+                $config->set('mail.from.name', $settings->sender_name);
+                $config->set('mail.from.address', $settings->sender_email);
 
-            switch ($settings->mail_method) {
+                switch ($settings->mail_method) {
 
-                case 'smtp':
+                    case 'smtp':
                     $config->set('mail.host', $settings->smtp_address);
                     $config->set('mail.port', $settings->smtp_port);
                     if (isset($settings->smtp_authorization)) {
@@ -167,18 +198,19 @@ class AppServiceProvider extends ServiceProvider
                     }
                     break;
 
-                case 'sendmail':
+                    case 'sendmail':
                     $config->set('mail.sendmail', $settings->sendmail_path);
                     break;
 
-                case 'mailgun':
+                    case 'mailgun':
                     $config->set('services.mailgun.domain', $settings->mailgun_domain);
                     $config->set('services.mailgun.secret', $settings->mailgun_secret);
                     break;
 
-                case 'mandrill':
+                    case 'mandrill':
                     $config->set('services.mandrill.secret', $settings->mandrill_secret);
                     break;
+                }
             }
         }
     }
