@@ -17,21 +17,13 @@
 
     <!-- MetisMenu CSS -->
     <link href="/vendor/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="/vendor/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/datatables.bootstrap.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <!-- <link href="/css/build.css" rel="stylesheet"> -->
-
-    <!-- Custom Fonts -->
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
 
 </head>
 
@@ -70,6 +62,11 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/handlebars.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/datatables.bootstrap.js"></script>
+    <script src="/vendor/jasny-bootstrap/js/jasny-bootstrap.js"></script>
+    
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/vendor/metisMenu/dist/metisMenu.min.js"></script>
@@ -79,6 +76,8 @@
     <script src="/js/checkbox.balloon.js"></script>
     <script src="/js/flashmessage.js"></script>
     <script src="/js/input.trigger.js"></script>
+    
+    @yield('scripts')
 
 </body>
 

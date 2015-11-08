@@ -7,6 +7,7 @@ use Navigation;
 use Permission;
 use Setting;
 use Schema;
+use NavigationSetting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerNavigation();
         $this->registerMailer();
+        $this->registerSettings();
     }
 
     /**
@@ -39,12 +41,18 @@ class AppServiceProvider extends ServiceProvider
         {
             return new \App\Supports\Permission\Permissions;
         });
+        
+        $this->app['navigationSetting'] = $this->app->share(function($app)
+        {
+            return new \App\Supports\Settings\NavigationSetting;
+        });
 
         $this->app->booting(function()
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Navigation', 'App\Supports\Navigation\NavigationFacade');
             $loader->alias('Permission', 'App\Supports\Permission\PermissionsFacade');
+            $loader->alias('NavigationSetting', 'App\Supports\Settings\SettingFacade');
         });
     }
 
@@ -89,24 +97,6 @@ class AppServiceProvider extends ServiceProvider
                     ]
                 ]
             ],
-            'settings' => [
-                'label' => 'Setting',
-                'icon' => 'fa fa-cogs',
-                'order' => 1000,
-                'url' => '/settings',
-                'permissions' => [
-                    'manage.setting'
-                ],
-                'childMenu' => [
-                    'email' => [
-                        'label' => 'Email',
-                        'url' => '/settings/email',
-                        'permissions' => [
-                            'setting.email'
-                        ]
-                    ]
-                ]
-            ]
         ]);
     }
 
@@ -134,48 +124,27 @@ class AppServiceProvider extends ServiceProvider
             ],
         ]);
     }
+    
+    public function registerSettings()
+    {
+        NavigationSetting::register([
+            'email' => [
+                'label' => 'Email',
+                'icon' => 'fa fa-mail',
+                'url'   => '/settings/email',
+                'order' => 0,
+                'segment' => 2,
+                'permissions' => [
+                    'setting.email'
+                ],
+            ],
+        ]);
+    }
 
     public function registerMailer()
     {
         if (Schema::hasTable('settings'))
         {
-            // if(Setting::has('system_mail')){
-            //     $config = $this->app->make('config');
-            //     $settings = Setting::get('system_mail');
-            //     // $config->set('mail.driver', $settings->mail_method);
-            //     $config->set('mail.driver', array_get($settings, 'mail_method'));
-            //     $config->set('mail.from.name', array_get($settings, 'sender_name'));
-            //     $config->set('mail.from.address', array_get($settings, 'sender_email'));
-            //
-            //     switch ($settings->mail_method) {
-            //
-            //         case 'smtp':
-            //             $config->set('mail.host', array_get($settings, 'smtp_address'));
-            //             $config->set('mail.port', array_get($settings, 'smtp_port'));
-            //             if (isset(array_get($settings, 'smtp_authorization'))) {
-            //                 $config->set('mail.username', array_get($settings, 'smtp_username'));
-            //                 $config->set('mail.password', array_get($settings, 'smtp_password'));
-            //             }
-            //             else {
-            //                 $config->set('mail.username', null);
-            //                 $config->set('mail.password', null);
-            //             }
-            //             break;
-            //
-            //         case 'sendmail':
-            //             $config->set('mail.sendmail', array_get($settings, 'sendmail_path'));
-            //             break;
-            //
-            //         case 'mailgun':
-            //             $config->set('services.mailgun.domain', array_get($settings, 'mailgun_domain'));
-            //             $config->set('services.mailgun.secret', array_get($settings, 'mailgun_secret'));
-            //             break;
-            //
-            //         case 'mandrill':
-            //             $config->set('services.mandrill.secret', array_get($settings, 'mandrill_secret'));
-            //             break;
-            //     }
-            // }
             if(Setting::has('system_mail')){
                 $config = $this->app->make('config');
                 $settings = Setting::get('system_mail');

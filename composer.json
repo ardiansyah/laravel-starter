@@ -12,7 +12,10 @@
         "laravelcollective/html": "5.1.*",
         "watson/validating": "~1.0",
         "cornford/setter": "2.*",
-        "weblee/mandrill": "dev-master"
+        "pingpong/modules": "~2.0",
+        "teepluss/theme": "dev-master",
+        "spatie/laravel-medialibrary": "^3.7",
+        "yajra/laravel-datatables-oracle": "~5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -25,7 +28,8 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Modules\\": "modules/"
         }
     },
     "autoload-dev": {

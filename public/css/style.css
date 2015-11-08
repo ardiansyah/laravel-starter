@@ -75,3 +75,9 @@ label.permissions-label a {
 .sidebar .nav-second-level li a.active {
     border-top: 1px solid #D8D0D0;
 }
+#side-menu li a.active {
+    border-right: 3px solid #311D1D;
+}
+#datatable tr td:last-child {
+    text-align: center;
+}

@@ -140,6 +140,10 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Cornford\Setter\SettingServiceProvider::class,
+        Teepluss\Theme\ThemeServiceProvider::class,
+        Pingpong\Modules\ModulesServiceProvider::class,
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
+        yajra\Datatables\DatatablesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -202,6 +206,9 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Setting'   => Cornford\Setter\Facades\SettingFacade::class,
+        'Theme'     => Teepluss\Theme\Facades\Theme::class,
+        'Module'    => Pingpong\Modules\Facades\Module::class,
+        'Datatables' => yajra\Datatables\Datatables::class,
 
     ],
 

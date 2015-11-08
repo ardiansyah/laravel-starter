@@ -62,17 +62,16 @@
                     @endif
                 </li>
                 @endforeach
-                <!-- <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                 <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Setting<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        @foreach(NavigationSetting::render() as $key => $main)
                         <li>
-                            <a href="flot.html">Flot Charts</a>
+                            <a href="{{ $main->url }}">{{ $main->label }}</a>
                         </li>
-                        <li>
-                            <a href="morris.html">Morris.js Charts</a>
-                        </li>
+                        @endforeach
                     </ul>
-                </li> -->
+                </li> 
                 <!-- <li>
                     <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>

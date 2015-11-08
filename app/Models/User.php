@@ -10,8 +10,10 @@ namespace App\Models;
 use Cartalyst\Sentinel\Activations\EloquentActivation as Activation;
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Sentinel;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class User extends EloquentUser
+class User extends EloquentUser implements HasMedia
 {
-    
+    use HasMediaTrait;
 }

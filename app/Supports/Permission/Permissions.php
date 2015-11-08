@@ -3,15 +3,24 @@ namespace App\Supports\Permission;
 
 class Permissions
 {
-    protected $permissions = array();
+    protected $permissionItems = [];
+
+    protected $permissions = [];
 
     public function register($permissions)
     {
-        $this->permissions = (object) array_merge($this->permissions, $permissions);
+        $this->permissionItems = array_merge($this->permissionItems, $permissions);
     }
 
-    public function get()
+    public function render()
     {
+        // return $this->permissions;
+        foreach ($this->permissionItems as $key => $permission) {
+            $item = (object) array_merge([], $permission);
+
+            $this->permissions[$key] = $item;
+        }
+
         return $this->permissions;
     }
 }

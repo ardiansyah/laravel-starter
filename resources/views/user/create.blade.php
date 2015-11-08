@@ -10,7 +10,7 @@
         <!-- <div class="panel-heading">
             <a href="#" class="btn btn-primary">Tambah Group</a>
         </div> -->
-        {!! Form::open() !!}
+        {!! Form::open(['files' => 'true']) !!}
         <div class="panel-body">
             <div class="row">
             <div class="form-group col-md-6">
@@ -29,7 +29,20 @@
                 <label for="exampleInputPassword1">Confirm Password</label>
                 <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <div class="form-group col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <!--<label>Foto</label>-->
+                    <!--<input type="file" class="form-control" id="avatar" name="avatar">-->
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="avatar"></span>
+                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <div class="form-group col-md-6">
                 <!-- <label for="exampleInputPassword1">Confirm Password</label> -->
                 <div class="checkbox">
                     <label>
@@ -38,8 +51,9 @@
                     </label>
                 </div>
             </div>
+            
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label for="exampleInputPassword1">Role</label>
                 @foreach($roles as $role)
                 <div class="checkbox">
@@ -54,7 +68,7 @@
                 <label for="exampleInputPassword1">Permissions</label>
 
                 <div class="row" style="padding: 15px 25px;">
-                @foreach(Permission::get() as $key => $permissions)
+                @foreach(Permission::render() as $key => $permissions)
 
                     <div class="col-md-6 permissions" id="">
                         <label class="permissions-label"> <a data-toggle="collapse" href="#{{ $key }}" aria-expanded="false"> {{ $key }} </a></label>
@@ -83,7 +97,6 @@
                 @endforeach
                 </div>
             </div>
-            </div>
         </div>
 
         <div class="panel-footer">
@@ -95,3 +108,4 @@
 </div>
 
 @stop
+

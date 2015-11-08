@@ -21,7 +21,7 @@
                 <label for="exampleInputPassword1">Permissions</label>
 
                 <div class="row" style="padding: 15px 25px;">
-                    @foreach(Permission::get() as $key => $permissions)
+                    @foreach(Permission::render() as $key => $permissions)
 
                         <div class="col-md-6 permissions" id="">
                             <label class="permissions-label"> <a data-toggle="collapse" href="#{{ $key }}" aria-expanded="false"> {{ $key }} </a></label>

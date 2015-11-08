@@ -8,7 +8,7 @@ use Sentinel;
 class NavigationManager
 {
 
-    protected $items = array();
+    public $items = array();
 
     protected $childItems = array();
 
@@ -76,6 +76,13 @@ class NavigationManager
         $this->items = $this->filterItemPermissions($user, $this->items);
 
         return $this->items;
+    }
+
+    public function extend($item)
+    {
+        // return array_get($this->items, $item);
+
+        // return $this;
     }
 
     public function items()

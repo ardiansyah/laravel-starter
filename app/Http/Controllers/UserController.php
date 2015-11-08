@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Role;
 use Sentinel;
 use Flash;
+use Datatables;
 
 class UserController extends Controller
 {
@@ -45,6 +46,7 @@ class UserController extends Controller
 
     public function postCreate()
     {
+        // return $this->request->file('files');
         $input = $this->request->all();
 
         $this->validate($this->request, [
@@ -82,10 +84,22 @@ class UserController extends Controller
                    $user->removePermission($key)->save();
                }
            }
+           
+           // UPLOAD FILE AVATAR
+           if($this->request->hasFile('avatar')){
+               $user->addMedia($this->request->file('avatar'))
+                    ->toCollection('avatar');
+           }
+           
+           if($this->request->hasFile('files')){
+               
+               $user->addMedia($this->request->file('files'))
+                    ->toCollection('userfile');
+           }
 
            Flash::success('Data berhasil ri rubah');
 
-           return redirect('/user/edit/'.$user->id);
+           return redirect('/users/user/edit/'.$user->id);
 
        }catch(Exception $e){
 
@@ -105,7 +119,7 @@ class UserController extends Controller
 
         $roles = Role::all();
         $user = User::find($id);
-
+        // echo count($user->getmedia());
         list($permissions, $values) = array_divide($user->permissions);
         return view('user.edit', compact('user', 'roles', 'permissions'));
     }
@@ -163,9 +177,19 @@ class UserController extends Controller
                     $user->removePermission($key)->save();
                 }
             }
+            
+            // UPLOAD FILE AVATAR
+            if($this->request->hasFile('avatar')){
+                if(sizeof($media = $user->getMedia()) !== 0){
+                     $media[0]->delete();
+                }
+               
+                $user->addMedia($this->request->file('avatar'))
+                    ->toCollection('avatar');
+            }
 
             Flash::success('Data berhasil ri rubah');
-
+            
             return redirect()->back();
 
         }catch(Exception $e){
@@ -182,8 +206,8 @@ class UserController extends Controller
 
         $user = User::find($id);
         $user->delete();
-        Flash::success('Data berhasil ri rubah');
-        return redirect('/user');
+        Flash::success('Data berhasil di hapus');
+        return redirect('/users/user');
     }
 
     public function getMyaccount($id)
@@ -242,6 +266,21 @@ class UserController extends Controller
         $user->removePermission('superuser');
 
         return $user->save();
+    }
+    
+    public function getDatatable()
+    {
+        // $users = User::select(['id', 'first_name', 'email', 'created_at', 'updated_at']);
+        $users = User::with('roles')->select('*');
+
+        return Datatables::of($users)
+            ->editColumn('first_name', '{{ $first_name }}')
+            ->addColumn('action', function ($user) {
+                return '<a href="/users/user/edit/'.$user->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                        <a href="/users/user/delete/'.$user->id.'" onclick="return confirm(\'Hapus Data? \')" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            })
+            // ->removeColumn('id')
+            ->make(true);
     }
 
 }
