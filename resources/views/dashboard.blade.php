@@ -4,6 +4,4 @@
 
 {{ dump(Navigation::render()) }}
 
-{{ dump(NavigationSetting::render()) }}
-
 @stop

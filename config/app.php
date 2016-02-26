@@ -119,7 +119,7 @@ return [
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Routing\ControllerServiceProvider::class,
+        // Illuminate\Routing\ControllerServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
@@ -139,11 +139,8 @@ return [
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Cornford\Setter\SettingServiceProvider::class,
-        Teepluss\Theme\ThemeServiceProvider::class,
-        Pingpong\Modules\ModulesServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
-        yajra\Datatables\DatatablesServiceProvider::class,
 
         /*
          * Application Service Providers...
